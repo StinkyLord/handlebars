@@ -1,0 +1,70 @@
+{
+	"branchPrefix": "whitesource-remediate/",
+	"requireConfig": "optional",
+	"suppressNotifications": [
+		"missingCredentialsError"
+	],
+	"vulnerabilityAlerts": {
+		"enabled": false,
+		"ignoreUnstable": false,
+		"groupName": null,
+		"schedule": [],
+		"dependencyDashboardApproval": false,
+		"labels": [
+			"security fix"
+		],
+		"commitMessageSuffix": ""
+	},
+	"extends": [
+		"config:base",
+		"group:all"
+	],
+	"schedule": [
+		"before 3am on the first day of the month"
+	],
+	"packageRules": [
+		{
+			"matchPackageNames": [
+				"react-scripts",
+				"typescript",
+				"jest",
+				"ts-jest"
+			],
+			"groupName": "Core Frontend libraries",
+			"description": "Put extra care when updating these packages. They are the core of the frontend."
+		},
+		{
+			"matchDatasources": [
+				"npm"
+			],
+			"matchPackageNames": [
+				"handlebars"
+			],
+			"matchCurrentVersion": "4.0.14",
+			"allowedVersions": ">= 4.7.4",
+			"vulnerabilityAlert": true,
+			"enabled": true,
+			"ignoreUnstable": false,
+			"groupName": null,
+			"schedule": [],
+			"dependencyDashboardApproval": false,
+			"labels": [
+				"security fix"
+			],
+			"prBodyTemplate": "{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}",
+			"prBodyNotes": [
+				"By merging this PR, the issue #5 will be automatically resolved and closed:\n\n| Severity           | <a href='#'><img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width='19' height='20'></a> CVSS Score       |CVE  |\n|---|---|---|\n| ![Critical](https://whitesource-resources.whitesourcesoftware.com/critical_vul_bb.png?) Critical | 9.8 | [CVE-2019-19919](https://www.mend.io/vulnerability-database/CVE-2019-19919) |\n| ![Critical](https://whitesource-resources.whitesourcesoftware.com/critical_vul_bb.png?) Critical | 9.8 | [CVE-2021-23369](https://www.mend.io/vulnerability-database/CVE-2021-23369) |\n| ![Critical](https://whitesource-resources.whitesourcesoftware.com/critical_vul_bb.png?) Critical | 9.8 | [CVE-2021-23383](https://www.mend.io/vulnerability-database/CVE-2021-23383) |\n| ![Critical](https://whitesource-resources.whitesourcesoftware.com/critical_vul_bb.png?) Critical | 9.8 | [CVE-2021-44906](https://www.mend.io/vulnerability-database/CVE-2021-44906) |\n| ![High](https://whitesource-resources.whitesourcesoftware.com/high_vul_bb.png?) High | 8.1 | [CVE-2019-20920](https://www.mend.io/vulnerability-database/CVE-2019-20920) |\n| ![High](https://whitesource-resources.whitesourcesoftware.com/high_vul_bb.png?) High | 7.5 | [CVE-2019-20922](https://www.mend.io/vulnerability-database/CVE-2019-20922) |\n| ![High](https://whitesource-resources.whitesourcesoftware.com/high_vul_bb.png?) High | 7.5 | [WS-2020-0450](https://github.com/handlebars-lang/handlebars.js/commit/33a3b46bc205f768f8edbc67241c68591fe3472c) |\n| ![Medium](https://whitesource-resources.whitesourcesoftware.com/medium_vul_bb.png?) Medium | 5.6 | [CVE-2020-7598](https://www.mend.io/vulnerability-database/CVE-2020-7598) |\n<!--[REMEDIATE_ANALITICS]{\"libraryData\":{\"libraryName\":\"handlebars\",\"libraryVersion\":\"4.0.14\",\"libraryFixVersion\":\"4.7.4\",\"libraryArtifactId\":\"handlebars\",\"language\":\"javascript/Node.js\"},\"vulnerabilityData\":[{\"severity\":\"Critical\",\"score\":\"9.8\",\"vulnerabilityId\":\"CVE-2019-19919\"},{\"severity\":\"Critical\",\"score\":\"9.8\",\"vulnerabilityId\":\"CVE-2021-23369\"},{\"severity\":\"Critical\",\"score\":\"9.8\",\"vulnerabilityId\":\"CVE-2021-23383\"},{\"severity\":\"Critical\",\"score\":\"9.8\",\"vulnerabilityId\":\"CVE-2021-44906\"},{\"severity\":\"High\",\"score\":\"8.1\",\"vulnerabilityId\":\"CVE-2019-20920\"},{\"severity\":\"High\",\"score\":\"7.5\",\"vulnerabilityId\":\"CVE-2019-20922\"},{\"severity\":\"High\",\"score\":\"7.5\",\"vulnerabilityId\":\"WS-2020-0450\"},{\"severity\":\"Medium\",\"score\":\"5.6\",\"vulnerabilityId\":\"CVE-2020-7598\"}]}[/REMEDIATE_ANALITICS]-->"
+			],
+			"isVulnerabilityAlert": true,
+			"commitMessageSuffix": "",
+			"suppressNotifications": [
+				"prIgnoreNotification",
+				"prEditNotification"
+			],
+			"matchFiles": [
+				"package.json"
+			],
+			"rangeStrategy": "update-lockfile"
+		}
+	]
+}
